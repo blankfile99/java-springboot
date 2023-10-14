@@ -49,6 +49,17 @@ public class MedicoController {
     //Lista com paginacao
     @GetMapping
     public Page<MedicosListarDTO> listar(@PageableDefault(size=10, sort = {"nome"}) Pageable pageable) {
-        return repository.findAll(pageable).map(MedicosListarDTO::new);
+        //return repository.findAll(pageable).map(MedicosListarDTO::new);
+        return repository.findAllByAtivoTrue(pageable).map(MedicosListarDTO::new);
     }
+
+    //DELETA o registro do Banco
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        //repository.deleteById(id); //deleta registro
+        var medico = repository.getReferenceById(id); //inativa o medico em vez de excluir
+        medico.excluir();
+    }
+
 }

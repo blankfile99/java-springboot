@@ -14,7 +14,6 @@ public record MedicosDTO(
         @NotBlank
         @Email
         String email,
-
         @NotBlank
         String telefone,
         @NotBlank
@@ -24,7 +23,4 @@ public record MedicosDTO(
         Especialidade especialidade,
         @NotNull
         @Valid
-        DadosEndereco endereco
-) {
-
-}
+        DadosEndereco endereco){}
